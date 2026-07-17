@@ -3,8 +3,8 @@ import Note from "../models/Note.js"
 export async function getAllNotes(req, res) {
 
     try{
-        const notes=await Note.find();
-        res.status(200).json(notes)
+        const notes=await Note.find().sort({createdAt : -1});
+        res.json(notes)
     }
     catch(error){
         console.log("Error to get all Notes",error)
@@ -13,6 +13,18 @@ export async function getAllNotes(req, res) {
     
 }
 
+
+export async function getNoteById(req,res) {
+    try{
+        const note=await Note.findById(req.params.id)
+        if(!note) res.status(404).json({message : "Note not found"})
+        else res.status(200).json(note) 
+    }catch(error){
+        console.log(error)
+        res.json(500).json({message : "Note not created"});
+    }
+    
+}
 
 export async function createNote(req, res) {
     try
