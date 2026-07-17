@@ -33,10 +33,16 @@ export async function createNote(req, res) {
        const newNote = new Note({title,content})
 
        await newNote.save()
+
+        return res.status(201).json({
+            message: "Note created successfully",
+            note: newNote,
+        });
       
     }
     catch(error)
     {
+        console.log("Error to create Note",error)
          res.status(500).json({message : "Internal server Error"})
     }
 }
