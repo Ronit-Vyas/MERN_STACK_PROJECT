@@ -53,7 +53,7 @@ const App = () => {
         // Refresh notes list
         await fetchNotes();
         setEditingNote(null);
-        alert('Note updated successfully!');
+        
       } else {
         // Create new note
         const response = await fetch(API_URL, {
@@ -68,7 +68,7 @@ const App = () => {
         }
         // Refresh notes list
         await fetchNotes();
-        alert('Note created successfully!');
+        
       }
     } catch (err) {
       console.error('Error submitting form:', err);
@@ -95,7 +95,7 @@ const App = () => {
         }
         // Refresh notes list
         await fetchNotes();
-        alert('Note deleted successfully!');
+        
       } catch (err) {
         console.error('Error deleting note:', err);
         alert('Error: ' + err.message);
